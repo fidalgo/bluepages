@@ -18,7 +18,7 @@ describe "CompaniesStory" do
 
     end
 
-    it {last_response.status.must_equal 201}
+    it {last_response.status.must_equal 200}
 
   end
 
@@ -51,7 +51,7 @@ describe "CompaniesStory" do
 
     before do
       @company = FactoryGirl.create :company
-      put "/company/#{@company.id}",{"id" => @company.id, "name" => "Updated Cool name"}.to_json
+      put "/company/#{@company.id}",{ company: {"name" => "Updated Cool name"} }
     end
     it {last_response.status.must_equal 202}
   end

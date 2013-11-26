@@ -3,18 +3,22 @@ require_relative 'models/init'
 require_relative 'routes/init'
 
 class BluePages< Sinatra::Base
-  enable :method_override
+  #  enable :method_override
 
   configure do
     set :app_file, __FILE__
+    enable :logging
+    file = File.new("#{settings.root}/logs/#{settings.environment}.log", 'a+')
+    file.sync = true
+    use Rack::CommonLogger, file
   end
 
   configure :development do
-    enable :logging, :dump_errors, :raise_errors
+    enable :dump_errors, :raise_errors
   end
 
   configure :test do
-    enable :logging, :dump_errors, :raise_errors
+    enable :dump_errors, :raise_errors
   end
 
   configure :production do
