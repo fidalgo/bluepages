@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'sinatra', :require => 'sinatra/base'
 gem 'mongoid'
-
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'json'
 
 group :test do
