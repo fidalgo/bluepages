@@ -49,28 +49,6 @@ module Sinatra
         company.delete
         status 202
       end
-
-      app.get '/company/:id/owners' do
-        company = Company.find(params[:id])
-        company.owners.to_json
-      end
-
-      app.post '/company/:id/owners' do
-        if params.empty?
-          params_json = JSON.parse(request.body.read)
-          person = Person.new(params_json)
-        else
-          person = Person.new(params['person'])
-        end
-        company = Company.find(params[:id])
-        company.ownwers.add(person)
-      end
-
-      app.get '/company/:id/directors' do
-        company = Company.find(params[:id])
-        company.ownwers.to_json
-      end
-
     end
   end
   register Companies

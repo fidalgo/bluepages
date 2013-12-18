@@ -64,36 +64,4 @@ describe "CompaniesStory" do
     it{last_response.status.must_equal 202}
   end
 
-  describe 'GET /company/:id/owners' do
-    before do
-      @company = FactoryGirl.create :company
-      get "/company/#{@company.id}/owners"
-    end
-    it {last_response.status.must_equal 200}
-    it{puts last_response.body}
-  end
-
-  describe 'POST /company/:id/owners' do
-    before do
-      DocumentUploader.enable_processing = true
-      @document = DocumentUploader.new(@person, :document)
-      @document.store!(File.open('/tmp/bitcoin.pdf'))
-      @company = FactoryGirl.create :company
-      @person = Person.new
-      @person.name = "Bit Master"
-      @person.document = @document
-      @company.owners.push @person
-      @company.save!
-      get "/company/#{@company.id}/owners"
-    end
-
-    it{puts last_response.body}
-
-    it{puts @company.owners.size}
-    after do
-      DocumentUploader.enable_processing = false
-      @document.remove!
-    end
-  end
-
 end

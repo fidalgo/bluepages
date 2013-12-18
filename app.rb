@@ -27,6 +27,7 @@ class BluePages< Sinatra::Base
   end
 
   register Sinatra::Companies
+  register Sinatra::Persons
 
   get '/' do
     send_file './public/index.html'
