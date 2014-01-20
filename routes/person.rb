@@ -28,7 +28,6 @@ module Sinatra
 
       app.get '/company/:id/directors' do
         company = Company.find(params[:id])
-        puts company.inspect
         company.directors.to_json
       end
 
